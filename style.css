@@ -82,3 +82,27 @@ button {
     padding: 10px 20px;
     font-size: 16px;
 }
+/* Style for the score summary */
+#question-text {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Center the Back to Sections button */
+.container button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.container button:hover {
+    background-color: #0056b3;
+}

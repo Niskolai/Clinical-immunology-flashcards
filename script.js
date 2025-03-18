@@ -80,6 +80,7 @@ const questionData = {
 
 // ✅ Function to load and display questions
 let currentQuestionIndex = 0;
+let score = 0; // Tracks the correct answers
 let questions = [];
 const totalQuestions = 20;
 
@@ -142,7 +143,12 @@ function validateAnswer() {
 
     let isCorrect = selectedAnswers.length === correctAnswers.length && selectedAnswers.every(answer => correctAnswers.includes(answer));
 
-    document.getElementById("feedback-message").innerText = isCorrect ? "✅ Correct!" : "❌ Incorrect!";
+    if (isCorrect) {
+        document.getElementById("feedback-message").innerText = "✅ Correct!";
+        score++; // ✅ Increase score when answer is correct
+    } else {
+        document.getElementById("feedback-message").innerText = "❌ Incorrect!";
+    }
 
     document.querySelectorAll("#answer-options input").forEach(input => {
         if (correctAnswers.includes(parseInt(input.value))) {
@@ -161,6 +167,8 @@ function nextQuestion() {
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
         displayQuestion();
+    } else {
+        showScoreSummary(); // ✅ Show score summary when all questions are done
     }
 }
 
@@ -185,3 +193,26 @@ window.onload = function() {
         loadQuestions();
     }
 };
+function showScoreSummary() {
+    document.getElementById("question-title").innerText = "Section Completed!";
+    document.getElementById("question-text").innerText = `Your Score: ${score} / ${questions.length}`;
+
+    document.getElementById("answer-options").innerHTML = ""; // Remove answer choices
+    document.getElementById("feedback-message").innerText = ""; // Clear feedback
+
+    document.getElementById("submit-btn").style.display = "none"; // Hide Submit button
+    document.getElementById("prev-btn").style.display = "none"; // Hide Previous button
+    document.getElementById("next-btn").style.display = "none"; // Hide Next button
+
+    // ✅ Final Fix: Remove any existing "Back to Sections" button before creating a new one
+    document.querySelectorAll(".back-to-sections-btn").forEach(btn => btn.remove());
+
+    // ✅ Create "Back to Sections" button
+    const backToSectionsBtn = document.createElement("button");
+    backToSectionsBtn.innerText = "🔙 Back to Sections";
+    backToSectionsBtn.id = "back-to-sections-btn"; 
+    backToSectionsBtn.classList.add("back-to-sections-btn");
+    backToSectionsBtn.onclick = goBackToSections;
+
+    document.querySelector(".container").appendChild(backToSectionsBtn);
+}
