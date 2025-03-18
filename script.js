@@ -1,6 +1,6 @@
 // ✅ Function to navigate from index.html to sections.html
 function navigateToSections(documentId) {
-    window.location.href = `sections.html?document=${documentId}`;
+    window.location.href = `./sections.html?document=${documentId}`;
 }
 
 // ✅ Function to get document ID from URL
@@ -39,7 +39,7 @@ function loadSections() {
 
 // ✅ Function to start a section (Navigate to questions.html)
 function startSection(documentId, sectionId) {
-    window.location.href = `questions.html?document=${documentId}&section=${sectionId}`;
+    window.location.href = `./questions.html?document=${documentId}&section=${sectionId}`;
 }
 
 // ✅ Function to go back to homepage
