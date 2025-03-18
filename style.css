@@ -50,19 +50,20 @@ button:hover {
     margin-top: 10px;
 }
 /* Center everything */
+/* Default Layout (For PC) */
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     height: 100vh;
-    padding-top: 50px; /* Move everything higher */
+    padding-top: 50px; /* Adjust if needed */
 }
 
-/* Fix layout for mobile: move up + make buttons visible */
+/* 🟢 Force Question Page Higher on Mobile + Ensure Buttons Are Visible */
 @media screen and (max-width: 768px) {
     .container {
-        padding-top: 100px; /* Match first page height */
+        padding-top: 120px; /* Move everything even higher */
     }
     #answer-options {
         margin-bottom: 5px;
@@ -71,7 +72,7 @@ button:hover {
         margin-bottom: 5px;
     }
     #submit-btn, #prev-btn, #next-btn {
-        margin: 8px 0; /* Adjust space so all 3 buttons are visible */
+        margin: 8px 0; /* Reduce button spacing */
     }
 }
 
@@ -123,14 +124,14 @@ button {
 .container button:hover {
     background-color: #0056b3;
 }
-/* Move sections list even higher */
+/* Default Sections List Spacing (For PC) */
 #sections-list {
-    margin-top: 10px; /* Reduce space above the buttons */
+    margin-top: 10px;
 }
 
-/* Adjust positioning for mobile */
+/* 🟢 Force Sections Page Higher on Mobile */
 @media screen and (max-width: 768px) {
     #sections-list {
-        margin-top: 0px; /* Move sections higher on mobile */
+        margin-top: -30px; /* Move higher (adjust if needed) */
     }
 }
