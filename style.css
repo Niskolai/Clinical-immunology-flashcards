@@ -17,9 +17,9 @@ body {
     padding-top: 50px; /* Default layout for PC */
 }
 
-/* Section List - Adjustments */
+/* Section List */
 #sections-list {
-    margin-top: 20px; /* ✅ NORMAL SPACING */
+    margin-top: 20px;
 }
 
 /* Buttons */
@@ -38,19 +38,48 @@ button:hover {
     background-color: #0056b3;
 }
 
+/* Answer Options */
+#answer-options {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+}
+
+/* Question Text */
+#question-text {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Progress Counter */
+#progress-counter {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+/* Feedback Message */
+#feedback-message {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
 /* Adaptive Layout for Mobile */
 @media screen and (max-width: 768px) {
-    /* 🟢 Restore Sections Page to Normal Position */
+    /* 🟢 Restore Sections Page Position */
     .container {
-        padding-top: 50px; /* ✅ BALANCED */
+        padding-top: 50px; /* ✅ Balanced layout */
     }
     #sections-list {
-        margin-top: 10px; /* ✅ NORMAL SPACING */
+        margin-top: 10px; /* ✅ Normal spacing */
     }
 
-    /* 🟢 Restore Question Page to Normal */
+    /* 🟢 Restore Question Page Position */
     .container {
-        margin-top: -100px; /* ✅ BALANCED */
+        margin-top: -100px; /* ✅ Normal positioning */
     }
 
     /* Adjust answer options */
@@ -67,4 +96,16 @@ button:hover {
     #submit-btn, #prev-btn, #next-btn {
         margin: 10px 0;
     }
+}
+
+/* Score Summary */
+#score-summary {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* Hide Elements Initially */
+.hidden {
+    display: none;
 }
