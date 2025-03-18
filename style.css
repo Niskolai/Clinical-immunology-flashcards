@@ -19,7 +19,7 @@ body {
 
 /* Section List - Adjustments */
 #sections-list {
-    margin-top: 10px;
+    margin-top: 20px; /* ✅ NORMAL SPACING */
 }
 
 /* Buttons */
@@ -40,31 +40,31 @@ button:hover {
 
 /* Adaptive Layout for Mobile */
 @media screen and (max-width: 768px) {
-    /* 🟢 Move Sections Page Higher on Mobile */
+    /* 🟢 Restore Sections Page to Normal Position */
     .container {
-        padding-top: 25px; /* ✅ Matches your manual test */
+        padding-top: 50px; /* ✅ BALANCED */
     }
     #sections-list {
-        margin-top: -10px; /* ✅ Matches your manual test */
+        margin-top: 10px; /* ✅ NORMAL SPACING */
     }
 
-    /* 🟢 Move Question Page Higher on Mobile */
+    /* 🟢 Restore Question Page to Normal */
     .container {
-        margin-top: -160px; /* ✅ Matches your manual test */
+        margin-top: -100px; /* ✅ BALANCED */
     }
 
     /* Adjust answer options */
     #answer-options {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
     }
     
     /* Adjust feedback message */
     #feedback-message {
-        margin-bottom: 5px;
+        margin-bottom: 10px;
     }
     
-    /* Adjust button spacing to keep them visible */
+    /* Adjust button spacing */
     #submit-btn, #prev-btn, #next-btn {
-        margin: 8px 0;
+        margin: 10px 0;
     }
 }
