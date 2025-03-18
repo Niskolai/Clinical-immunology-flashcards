@@ -56,16 +56,16 @@ button:hover {
     align-items: center;
     justify-content: flex-start; /* Move everything higher */
     height: 100vh;
-    padding-top: 40px;
+    padding-top: 20px; /* Move everything even higher */
 }
 
-/* Fix layout for mobile so all buttons are visible */
+/* Fix layout for mobile to ensure all buttons are visible */
 @media (max-width: 768px) {
     .container {
-        padding-top: 30px; /* Move everything higher */
+        padding-top: 10px; /* Move higher */
     }
     #answer-options {
-        margin-bottom: 10px; /* Reduce space below answers */
+        margin-bottom: 5px; /* Reduce space below answers */
     }
     #feedback-message {
         margin-bottom: 5px;
@@ -123,14 +123,14 @@ button {
 .container button:hover {
     background-color: #0056b3;
 }
-/* Move sections list higher */
+/* Move sections list even higher */
 #sections-list {
-    margin-top: 20px; /* Reduce space above the buttons */
+    margin-top: 10px; /* Move buttons closer to the title */
 }
 
 /* Adjust positioning for mobile */
 @media (max-width: 768px) {
     #sections-list {
-        margin-top: 50px; /* Move higher on mobile */
+        margin-top: 30px; /* Move even higher on mobile */
     }
 }
