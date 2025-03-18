@@ -1,3 +1,4 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -6,21 +7,28 @@ body {
     padding: 0;
 }
 
+/* Center everything */
 .container {
-    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    padding-top: 50px; /* Default layout for PC */
 }
 
-h1 {
-    font-size: 28px;
-    color: #333;
+/* Section List - Adjustments */
+#sections-list {
+    margin-top: 10px;
 }
 
+/* Buttons */
 button {
     background-color: #007bff;
     color: white;
-    padding: 15px 20px;
-    margin: 10px;
     border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
@@ -29,109 +37,34 @@ button {
 button:hover {
     background-color: #0056b3;
 }
-#sections-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-#answer-options {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-    margin-top: 10px;
-}
 
-#feedback-message {
-    font-size: 18px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-/* Center everything */
-/* Default Layout (For PC) */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    height: 100vh;
-    padding-top: 50px; /* Adjust if needed */
-}
-
-/* 🟢 Force Question Page Higher on Mobile + Ensure Buttons Are Visible */
+/* Adaptive Layout for Mobile */
 @media screen and (max-width: 768px) {
+    /* 🟢 Move Sections Page Higher on Mobile */
     .container {
-        padding-top: 120px; /* Move everything even higher */
+        padding-top: 25px; /* ✅ Matches your manual test */
     }
+    #sections-list {
+        margin-top: -10px; /* ✅ Matches your manual test */
+    }
+
+    /* 🟢 Move Question Page Higher on Mobile */
+    .container {
+        margin-top: -160px; /* ✅ Matches your manual test */
+    }
+
+    /* Adjust answer options */
     #answer-options {
         margin-bottom: 5px;
     }
+    
+    /* Adjust feedback message */
     #feedback-message {
         margin-bottom: 5px;
     }
+    
+    /* Adjust button spacing to keep them visible */
     #submit-btn, #prev-btn, #next-btn {
-        margin: 8px 0; /* Reduce button spacing */
-    }
-}
-
-/* Center the question text */
-#question-text {
-    font-size: 20px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Align answer choices properly */
-#answer-options {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-/* Center buttons */
-button {
-    display: block;
-    margin: 10px auto;
-    padding: 10px 20px;
-    font-size: 16px;
-}
-/* Style for the score summary */
-#question-text {
-    font-size: 22px;
-    font-weight: bold;
-    color: #333;
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* Center the Back to Sections button */
-.container button {
-    margin-top: 20px;
-    padding: 12px 20px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.container button:hover {
-    background-color: #0056b3;
-}
-/* Default Sections List Spacing (For PC) */
-#sections-list {
-    margin-top: 10px;
-}
-
-/* 🟢 Force Sections Page Higher on Mobile */
-@media screen and (max-width: 768px) {
-    #sections-list {
-        margin-top: -30px; /* Move higher (adjust if needed) */
+        margin: 8px 0;
     }
 }
