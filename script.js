@@ -1,13 +1,21 @@
+// ✅ Function to navigate from index.html to sections.html
 function navigateToSections(documentId) {
     window.location.href = `sections.html?document=${documentId}`;
 }
-// Function to get document ID from URL
+
+// ✅ Function to get document ID from URL
 function getDocumentId() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get("document");
 }
 
-// Function to display sections
+// ✅ Function to get section ID from URL
+function getSectionId() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("section");
+}
+
+// ✅ Function to display sections in sections.html
 function loadSections() {
     const documentId = getDocumentId();
     const sectionsList = document.getElementById("sections-list");
@@ -29,19 +37,23 @@ function loadSections() {
     }
 }
 
-// Function to start a section (Navigate to questions page)
+// ✅ Function to start a section (Navigate to questions.html)
 function startSection(documentId, sectionId) {
     window.location.href = `questions.html?document=${documentId}&section=${sectionId}`;
 }
 
-// Function to go back to homepage
+// ✅ Function to go back to homepage
 function goBackToStart() {
     window.location.href = "index.html";
 }
 
-// Load sections when the page loads
-window.onload = loadSections;
-// Sample Questions Data (Replace with actual questions)
+// ✅ Function to go back to sections
+function goBackToSections() {
+    const documentId = getDocumentId();
+    window.location.href = `sections.html?document=${documentId}`;
+}
+
+// ✅ Sample Questions Data (Replace with actual questions)
 const questionData = {
     "1": {
         "1": [
@@ -66,34 +78,42 @@ const questionData = {
     }
 };
 
-// Get document and section ID from URL
-function getQuestionParams() {
-    const params = new URLSearchParams(window.location.search);
-    return {
-        documentId: params.get("document"),
-        sectionId: params.get("section")
-    };
-}
-
+// ✅ Function to load and display questions
 let currentQuestionIndex = 0;
-let userSelections = [];
 let questions = [];
 const totalQuestions = 20;
 
-// Load Questions and Randomize Order
 function loadQuestions() {
-    const { documentId, sectionId } = getQuestionParams();
+    // ✅ Fix: Ensure script only runs on questions.html
+    if (!window.location.href.includes("questions.html")) {
+        return;
+    }
+
+    const documentId = getDocumentId();
+    const sectionId = getSectionId();
+
+    if (!document.getElementById("question-title") || !document.getElementById("progress-counter")) {
+        console.error("Error: Missing elements in questions.html!");
+        return;
+    }
+
     if (!documentId || !sectionId) {
         document.getElementById("question-title").innerText = "Error: No section selected!";
         return;
     }
 
     questions = questionData[documentId]?.[sectionId] || [];
-    questions = shuffleArray(questions); // Randomize order
+    if (questions.length === 0) {
+        document.getElementById("question-title").innerText = "No questions found for this section!";
+        return;
+    }
+
+    currentQuestionIndex = 0;
+    questions = shuffleArray(questions);
     displayQuestion();
 }
 
-// Display Current Question
+// ✅ Function to display the current question
 function displayQuestion() {
     const questionObj = questions[currentQuestionIndex];
 
@@ -115,7 +135,7 @@ function displayQuestion() {
     document.getElementById("feedback-message").innerText = "";
 }
 
-// Validate User Answer
+// ✅ Function to validate the answer
 function validateAnswer() {
     const selectedAnswers = [...document.querySelectorAll("#answer-options input:checked")].map(input => parseInt(input.value));
     const correctAnswers = questions[currentQuestionIndex].correctAnswers;
@@ -124,7 +144,6 @@ function validateAnswer() {
 
     document.getElementById("feedback-message").innerText = isCorrect ? "✅ Correct!" : "❌ Incorrect!";
 
-    // Highlight correct answers
     document.querySelectorAll("#answer-options input").forEach(input => {
         if (correctAnswers.includes(parseInt(input.value))) {
             input.parentElement.style.color = "green";
@@ -137,7 +156,7 @@ function validateAnswer() {
     document.getElementById("next-btn").disabled = false;
 }
 
-// Navigate to Next Question
+// ✅ Function to navigate to the next question
 function nextQuestion() {
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
@@ -145,7 +164,7 @@ function nextQuestion() {
     }
 }
 
-// Navigate to Previous Question
+// ✅ Function to navigate to the previous question
 function prevQuestion() {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
@@ -153,16 +172,16 @@ function prevQuestion() {
     }
 }
 
-// Shuffle Array
+// ✅ Function to shuffle an array (Randomize questions)
 function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
-// Go Back to Sections
-function goBackToSections() {
-    const { documentId } = getQuestionParams();
-    window.location.href = `sections.html?document=${documentId}`;
-}
-
-// Load questions on page load
-window.onload = loadQuestions;
+// ✅ Load functions based on the page
+window.onload = function() {
+    if (window.location.href.includes("sections.html")) {
+        loadSections();
+    } else if (window.location.href.includes("questions.html")) {
+        loadQuestions();
+    }
+};
