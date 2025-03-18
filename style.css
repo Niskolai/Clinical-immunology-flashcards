@@ -54,24 +54,21 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Move everything higher */
+    justify-content: flex-start;
     height: 100vh;
-    padding-top: 20px; /* Move everything even higher */
+    padding-top: 80px; /* Match first page layout */
 }
 
-/* Fix layout for mobile to ensure all buttons are visible */
-@media (max-width: 768px) {
-    .container {
-        padding-top: 10px; /* Move higher */
-    }
+/* Adaptive layout for different screen sizes */
+@media screen and (max-width: 768px) {
     #answer-options {
-        margin-bottom: 5px; /* Reduce space below answers */
+        margin-bottom: 5px;
     }
     #feedback-message {
         margin-bottom: 5px;
     }
     #submit-btn, #prev-btn, #next-btn {
-        margin: 5px 0; /* Reduce space between buttons */
+        margin: 8px 0; /* Adjust space to keep buttons visible */
     }
 }
 
