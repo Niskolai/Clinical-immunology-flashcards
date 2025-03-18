@@ -56,7 +56,14 @@ button:hover {
     align-items: center;
     justify-content: flex-start; /* Move content higher */
     height: 100vh;
-    padding-top: 80px; /* Adjust this value to move it more or less */
+    padding-top: 40px; /* Move content higher */
+}
+
+/* 🟢 Adjust position for mobile */
+@media (max-width: 768px) {
+    .container {
+        padding-top: 100px; /* Move higher on mobile */
+    }
 }
 
 /* Center the question text */
