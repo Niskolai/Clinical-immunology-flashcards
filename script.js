@@ -1,16 +1,18 @@
-const answerInputs = document.querySelectorAll("#answer-options input");
-
 // ✅ Function to navigate from index.html to sections.html
 function navigateToSections(documentId) {
     window.location.href = `./sections.html?document=${documentId}`;
 }
 
-// ✅ Function to get document & section ID from URL
+// ✅ Function to get document ID from URL
 function getDocumentId() {
-    return new URLSearchParams(window.location.search).get("document");
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("document");
 }
+
+// ✅ Function to get section ID from URL
 function getSectionId() {
-    return new URLSearchParams(window.location.search).get("section");
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get("section");
 }
 
 // ✅ Function to display sections in sections.html
@@ -40,6 +42,17 @@ function startSection(documentId, sectionId) {
     window.location.href = `./questions.html?document=${documentId}&section=${sectionId}`;
 }
 
+// ✅ Function to go back to homepage
+function goBackToStart() {
+    window.location.href = "index.html";
+}
+
+// ✅ Function to go back to sections
+function goBackToSections() {
+    const documentId = getDocumentId();
+    window.location.href = `sections.html?document=${documentId}`;
+}
+
 // ✅ Sample Questions Data (Replace with actual questions)
 const questionData = {
     "1": {
@@ -65,9 +78,9 @@ const questionData = {
     }
 };
 
-// ✅ Load and display questions
+// ✅ Function to load and display questions
 let currentQuestionIndex = 0;
-let score = 0;
+let score = 0; // Tracks the correct answers
 let questions = [];
 
 function loadQuestions() {
@@ -82,8 +95,9 @@ function loadQuestions() {
     }
 
     questions = questionData[documentId]?.[sectionId] || [];
+
     if (questions.length === 0) {
-        document.getElementById("question-title").innerText = "No questions found for this section!";
+        document.getElementById("question-title").innerText = "No questions found!";
         return;
     }
 
@@ -92,8 +106,18 @@ function loadQuestions() {
     displayQuestion();
 }
 
-// ✅ Display the current question
+// ✅ Function to display the current question
 function displayQuestion() {
+    if (!questions || questions.length === 0) {
+        console.error("No questions found!");
+        return;
+    }
+
+    if (currentQuestionIndex >= questions.length) {
+        showScoreSummary();
+        return;
+    }
+
     let questionData = questions[currentQuestionIndex];
 
     document.getElementById("question-text").innerText = questionData.question;
@@ -101,28 +125,37 @@ function displayQuestion() {
         `<label><input type="checkbox" value="${index}"> ${option}</label><br>`
     ).join("");
 
+    document.getElementById("feedback-message").innerText = "";
+
+    // ✅ Ensure "Submit Answer" is visible and enabled
     let submitBtn = document.getElementById("submit-btn");
     submitBtn.innerText = "✅ Submit Answer";
     submitBtn.disabled = true;
     submitBtn.onclick = validateAnswer;
 
+    // ✅ Ensure "Next Question" is disabled initially
+    let nextBtn = document.getElementById("next-btn");
+    nextBtn.disabled = true;
+
+    // ✅ Ensure "Previous Question" button is enabled correctly
     document.getElementById("prev-btn").disabled = currentQuestionIndex === 0;
 
-    let nextBtn = document.getElementById("next-btn");
-    if (nextBtn) nextBtn.remove();
-
+    // ✅ Enable Submit Button Only When an Answer is Selected
     document.querySelectorAll("#answer-options input").forEach(input => {
-        input.addEventListener("change", () => submitBtn.disabled = false);
+        input.addEventListener("change", () => {
+            submitBtn.disabled = false;
+        });
     });
 }
 
-// ✅ Validate the answer
+// ✅ Function to validate the answer
 function validateAnswer() {
     const selectedAnswers = [...document.querySelectorAll("#answer-options input:checked")].map(input => parseInt(input.value));
     const correctAnswers = questions[currentQuestionIndex].correctAnswers;
 
     let isCorrect = selectedAnswers.length === correctAnswers.length && selectedAnswers.every(answer => correctAnswers.includes(answer));
 
+    // ✅ Highlight Correct and Incorrect Answers
     document.querySelectorAll("#answer-options input").forEach(input => {
         input.parentElement.classList.remove("correct", "incorrect");
         if (correctAnswers.includes(parseInt(input.value))) {
@@ -132,16 +165,15 @@ function validateAnswer() {
         }
     });
 
+    // ✅ Disable Submit Button and Enable "Next Question"
     let submitBtn = document.getElementById("submit-btn");
     submitBtn.disabled = true;
-    submitBtn.innerText = "⏭️ Next Question";
-    submitBtn.onclick = nextQuestion;
 
     let nextBtn = document.getElementById("next-btn");
-    if (nextBtn) nextBtn.remove();
+    nextBtn.disabled = false;
 }
 
-// ✅ Navigate to the next question
+// ✅ Function to navigate to the next question
 function nextQuestion() {
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
@@ -151,7 +183,7 @@ function nextQuestion() {
     }
 }
 
-// ✅ Navigate to the previous question
+// ✅ Function to navigate to the previous question
 function prevQuestion() {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
@@ -159,9 +191,30 @@ function prevQuestion() {
     }
 }
 
-// ✅ Shuffle an array (Randomize questions)
+// ✅ Function to shuffle an array (Randomize questions)
 function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
+}
+
+// ✅ Function to show score summary at the end
+function showScoreSummary() {
+    document.getElementById("question-title").innerText = "Section Completed!";
+    document.getElementById("question-text").innerText = `Your Score: ${score} / ${questions.length}`;
+
+    document.getElementById("answer-options").innerHTML = ""; // Clear answers
+    document.getElementById("feedback-message").innerText = ""; // Clear feedback
+
+    document.getElementById("submit-btn").style.display = "none"; // Hide Submit button
+    document.getElementById("prev-btn").style.display = "none"; // Hide Previous button
+    document.getElementById("next-btn").style.display = "none"; // Hide Next button
+
+    // ✅ Create "Back to Sections" button
+    const backToSectionsBtn = document.createElement("button");
+    backToSectionsBtn.innerText = "🔙 Back to Sections";
+    backToSectionsBtn.id = "back-to-sections-btn";
+    backToSectionsBtn.onclick = goBackToSections;
+
+    document.querySelector(".container").appendChild(backToSectionsBtn);
 }
 
 // ✅ Load functions based on the page
@@ -172,26 +225,3 @@ window.onload = function() {
         loadQuestions();
     }
 };
-
-// ✅ Show score summary
-function showScoreSummary() {
-    document.getElementById("question-title").innerText = "Section Completed!";
-    document.getElementById("question-text").innerText = `Your Score: ${score} / ${questions.length}`;
-
-    document.getElementById("answer-options").innerHTML = "";
-    document.getElementById("feedback-message").innerText = "";
-
-    document.getElementById("submit-btn").style.display = "none";
-    document.getElementById("prev-btn").style.display = "none";
-    document.getElementById("next-btn").style.display = "none";
-
-    document.querySelectorAll(".back-to-sections-btn").forEach(btn => btn.remove());
-
-    const backToSectionsBtn = document.createElement("button");
-    backToSectionsBtn.innerText = "🔙 Back to Sections";
-    backToSectionsBtn.id = "back-to-sections-btn"; 
-    backToSectionsBtn.classList.add("back-to-sections-btn");
-    backToSectionsBtn.onclick = goBackToSections;
-
-    document.querySelector(".container").appendChild(backToSectionsBtn);
-}

@@ -37,7 +37,7 @@ button {
     display: inline-flex; /* Keep it compact */
     align-items: center;
     justify-content: center;
-    min-width: 180px; /* Ensure they don’t shrink too much */
+    min-width: 180px; /* Ensure they don't shrink too much */
     text-align: center;
 }
 
@@ -54,7 +54,7 @@ button:hover {
     margin-top: 20px;
 }
 
-/* Questions Styling */
+/* Question Styling */
 #question-text {
     font-size: 24px;
     font-weight: bold;
@@ -121,6 +121,7 @@ button:hover {
         font-size: 16px;
     }
 }
+
 @media screen and (max-width: 768px) {
     button {
         width: auto; /* Let buttons fit content */
@@ -129,8 +130,10 @@ button:hover {
         padding: 12px 15px; /* Keep padding balanced */
     }
 }
-#prev-btn {
-    margin-top: 1px; /* Reduce space above */
+
+/* Adjust Previous and Next Buttons to Move Closer */
+#prev-btn, #next-btn {
+    margin-top: 5px; /* Bring them closer to Submit button */
 }
 
 .correct {

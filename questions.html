@@ -10,16 +10,18 @@
     <div class="container">
         <h1 id="question-title">Question</h1>
         <p id="progress-counter">1/20</p>
-        
+
         <div id="question-text"></div>
         <div id="answer-options"></div>
-        
-        <button id="submit-btn" onclick="validateAnswer()">✅ Submit Answer</button>
-        <p id="feedback-message"></p>
 
-        <button id="next-btn" onclick="nextQuestion()" disabled>➡️ Next Question</button>
-        <button id="prev-btn" onclick="prevQuestion()">⬅️ Previous Question</button>
-        
+        <!-- ✅ Button Section (Now Stacked Properly) -->
+        <div id="question-buttons">
+            <button id="submit-btn" onclick="validateAnswer()">✅ Submit Answer</button>
+            <button id="next-btn" onclick="nextQuestion()" disabled>⏭️ Next Question</button>
+            <button id="prev-btn" onclick="prevQuestion()">⏮️ Previous Question</button>
+        </div>
+
+        <p id="feedback-message"></p>
     </div>
 
     <script src="script.js"></script>
