@@ -58,14 +58,6 @@ button:hover {
     height: 100vh;
     padding-top: 80px; /* Adjust this value to move it more or less */
 }
-
-/* 🟢 Adjust position for mobile */
-@media (max-width: 768px) {
-    .container {
-        padding-top: 25px; /* Move higher on mobile */
-    }
-}
-
 /* Center the question text */
 #question-text {
     font-size: 20px;
