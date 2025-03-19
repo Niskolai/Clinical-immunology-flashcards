@@ -1,4 +1,3 @@
-/* General Styles */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -7,28 +6,21 @@ body {
     padding: 0;
 }
 
-/* Center everything */
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    height: 100vh;
-    padding-top: 50px; /* Default layout for PC */
+    margin-top: 50px;
 }
 
-/* Section List */
-#sections-list {
-    margin-top: 20px;
+h1 {
+    font-size: 28px;
+    color: #333;
 }
 
-/* Buttons */
 button {
     background-color: #007bff;
     color: white;
+    padding: 15px 20px;
+    margin: 10px;
     border: none;
-    padding: 10px 20px;
-    margin: 10px 0;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
@@ -37,75 +29,88 @@ button {
 button:hover {
     background-color: #0056b3;
 }
-
-/* Answer Options */
+#sections-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
 #answer-options {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    gap: 5px;
     margin-top: 10px;
 }
 
-/* Question Text */
+#feedback-message {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+/* Center everything */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Move content higher */
+    height: 100vh;
+    padding-top: 80px; /* Adjust this value to move it more or less */
+}
+
+/* 🟢 Adjust position for mobile */
+@media (max-width: 768px) {
+    .container {
+        padding-top: 100px; /* Move higher on mobile */
+    }
+}
+
+/* Center the question text */
+#question-text {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Align answer choices properly */
+#answer-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Center buttons */
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+/* Style for the score summary */
 #question-text {
     font-size: 22px;
     font-weight: bold;
-    margin-bottom: 15px;
-}
-
-/* Progress Counter */
-#progress-counter {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 15px;
-}
-
-/* Feedback Message */
-#feedback-message {
-    font-size: 16px;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-/* Adaptive Layout for Mobile */
-@media screen and (max-width: 768px) {
-    /* 🟢 Restore Sections Page Position */
-    .container {
-        padding-top: 50px; /* ✅ Balanced layout */
-    }
-    #sections-list {
-        margin-top: 10px; /* ✅ Normal spacing */
-    }
-
-    /* 🟢 Restore Question Page Position */
-    .container {
-        margin-top: -100px; /* ✅ Normal positioning */
-    }
-
-    /* Adjust answer options */
-    #answer-options {
-        margin-bottom: 10px;
-    }
-    
-    /* Adjust feedback message */
-    #feedback-message {
-        margin-bottom: 10px;
-    }
-    
-    /* Adjust button spacing */
-    #submit-btn, #prev-btn, #next-btn {
-        margin: 10px 0;
-    }
-}
-
-/* Score Summary */
-#score-summary {
-    font-size: 24px;
-    font-weight: bold;
+    color: #333;
+    text-align: center;
     margin-top: 20px;
 }
 
-/* Hide Elements Initially */
-.hidden {
-    display: none;
+/* Center the Back to Sections button */
+.container button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.container button:hover {
+    background-color: #0056b3;
 }
