@@ -116,24 +116,36 @@ function loadQuestions() {
 
 // ✅ Function to display the current question
 function displayQuestion() {
-    const questionObj = questions[currentQuestionIndex];
+    let questionData = questions[currentQuestionIndex];
 
-    document.getElementById("question-text").innerText = questionObj.question;
-    document.getElementById("progress-counter").innerText = `${currentQuestionIndex + 1}/${totalQuestions}`;
+    document.getElementById("question-text").innerText = questionData.question;
+    document.getElementById("answer-options").innerHTML = questionData.options.map((option, index) =>
+        `<label><input type="checkbox" value="${index}"> ${option}</label><br>`
+    ).join("");
 
-    const optionsContainer = document.getElementById("answer-options");
-    optionsContainer.innerHTML = "";
-
-    questionObj.options.forEach((option, index) => {
-        const optionElem = document.createElement("label");
-        optionElem.innerHTML = `<input type="checkbox" value="${index}"> ${option}`;
-        optionsContainer.appendChild(optionElem);
-        optionsContainer.appendChild(document.createElement("br"));
-    });
-
-    document.getElementById("submit-btn").disabled = false;
-    document.getElementById("next-btn").disabled = true;
     document.getElementById("feedback-message").innerText = "";
+
+    // 🔹 Restore Submit Answer Button with ✅
+    let submitBtn = document.getElementById("submit-btn");
+    submitBtn.innerText = "✅ Submit Answer"; // Add green checkmark
+    submitBtn.disabled = true; // Start disabled until an answer is selected
+    submitBtn.onclick = validateAnswer;
+
+    // 🔹 Ensure the Previous Question button is enabled correctly
+    document.getElementById("prev-btn").disabled = currentQuestionIndex === 0;
+
+    // 🔹 Remove Next Question button if it was added before
+    let nextBtn = document.getElementById("next-btn");
+    if (nextBtn) {
+        nextBtn.remove();
+    }
+
+    // 🔹 Enable submit button once an answer is selected
+    document.querySelectorAll("#answer-options input").forEach(input => {
+        input.addEventListener("change", () => {
+            submitBtn.disabled = false;
+        });
+    });
 }
 
 // ✅ Function to validate the answer
@@ -143,31 +155,31 @@ function validateAnswer() {
 
     let isCorrect = selectedAnswers.length === correctAnswers.length && selectedAnswers.every(answer => correctAnswers.includes(answer));
 
-    if (isCorrect) {
-        document.getElementById("feedback-message").innerText = "✅ Correct!";
-        score++; // ✅ Increase score when answer is correct
-    } else {
-        document.getElementById("feedback-message").innerText = "❌ Incorrect!";
-    }
+    // 🔹 Remove "Correct" or "Incorrect" message
+    document.getElementById("feedback-message").innerText = ""; 
 
+    // 🔹 Highlight correct and incorrect answers
     document.querySelectorAll("#answer-options input").forEach(input => {
         if (correctAnswers.includes(parseInt(input.value))) {
-            input.parentElement.style.color = "green";
+            input.parentElement.style.color = "green"; // Correct answers in green
         } else if (selectedAnswers.includes(parseInt(input.value))) {
-            input.parentElement.style.color = "red";
+            input.parentElement.style.color = "red"; // Incorrect answers in red
         }
     });
 
-// Change Submit Button to Next Question
-let submitBtn = document.getElementById("submit-btn");
-submitBtn.innerText = "Next Question";
-submitBtn.onclick = nextQuestion; // Assign next question function
+    // 🔹 Disable Submit Button After Clicking Once
+    let submitBtn = document.getElementById("submit-btn");
+    submitBtn.disabled = true;
 
-// Remove the Next Question button if it exists
-let nextBtn = document.getElementById("next-btn");
-if (nextBtn) {
-    nextBtn.remove();
-}
+    // 🔹 Change Submit Button to "⏭️ Next Question"
+    submitBtn.innerText = "⏭️ Next Question";
+    submitBtn.onclick = nextQuestion;
+
+    // 🔹 Remove the existing Next Question button if it exists
+    let nextBtn = document.getElementById("next-btn");
+    if (nextBtn) {
+        nextBtn.remove();
+    }
 }
 
 // ✅ Function to navigate to the next question
