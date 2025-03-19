@@ -28,13 +28,16 @@ h1 {
 button {
     background-color: #007bff;
     color: white;
-    padding: 12px 20px;
-    margin: 10px;
+    padding: 12px 20px; /* Back to normal padding */
+    margin: 10px; /* Keep spacing clean */
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 16px; /* Restore original font size */
     cursor: pointer;
-    display: block;
+    display: inline-flex; /* Keep it compact */
+    align-items: center;
+    justify-content: center;
+    min-width: 180px; /* Ensure they don’t shrink too much */
     text-align: center;
 }
 
@@ -116,5 +119,13 @@ button:hover {
     button {
         width: 100%;
         font-size: 16px;
+    }
+}
+@media screen and (max-width: 768px) {
+    button {
+        width: auto; /* Let buttons fit content */
+        min-width: 180px; /* Keep a minimum size */
+        max-width: 250px; /* Prevent stretching */
+        padding: 12px 15px; /* Keep padding balanced */
     }
 }
