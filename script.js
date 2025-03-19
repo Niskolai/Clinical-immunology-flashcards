@@ -158,8 +158,16 @@ function validateAnswer() {
         }
     });
 
-    document.getElementById("submit-btn").disabled = true;
-    document.getElementById("next-btn").disabled = false;
+// Change Submit Button to Next Question
+let submitBtn = document.getElementById("submit-btn");
+submitBtn.innerText = "Next Question";
+submitBtn.onclick = nextQuestion; // Assign next question function
+
+// Remove the Next Question button if it exists
+let nextBtn = document.getElementById("next-btn");
+if (nextBtn) {
+    nextBtn.remove();
+}
 }
 
 // ✅ Function to navigate to the next question
