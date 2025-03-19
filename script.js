@@ -1,18 +1,16 @@
+const answerInputs = document.querySelectorAll("#answer-options input");
+
 // ✅ Function to navigate from index.html to sections.html
 function navigateToSections(documentId) {
     window.location.href = `./sections.html?document=${documentId}`;
 }
 
-// ✅ Function to get document ID from URL
+// ✅ Function to get document & section ID from URL
 function getDocumentId() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("document");
+    return new URLSearchParams(window.location.search).get("document");
 }
-
-// ✅ Function to get section ID from URL
 function getSectionId() {
-    const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get("section");
+    return new URLSearchParams(window.location.search).get("section");
 }
 
 // ✅ Function to display sections in sections.html
@@ -42,17 +40,6 @@ function startSection(documentId, sectionId) {
     window.location.href = `./questions.html?document=${documentId}&section=${sectionId}`;
 }
 
-// ✅ Function to go back to homepage
-function goBackToStart() {
-    window.location.href = "index.html";
-}
-
-// ✅ Function to go back to sections
-function goBackToSections() {
-    const documentId = getDocumentId();
-    window.location.href = `sections.html?document=${documentId}`;
-}
-
 // ✅ Sample Questions Data (Replace with actual questions)
 const questionData = {
     "1": {
@@ -78,25 +65,16 @@ const questionData = {
     }
 };
 
-// ✅ Function to load and display questions
+// ✅ Load and display questions
 let currentQuestionIndex = 0;
-let score = 0; // Tracks the correct answers
+let score = 0;
 let questions = [];
-const totalQuestions = 20;
 
 function loadQuestions() {
-    // ✅ Fix: Ensure script only runs on questions.html
-    if (!window.location.href.includes("questions.html")) {
-        return;
-    }
+    if (!window.location.href.includes("questions.html")) return;
 
     const documentId = getDocumentId();
     const sectionId = getSectionId();
-
-    if (!document.getElementById("question-title") || !document.getElementById("progress-counter")) {
-        console.error("Error: Missing elements in questions.html!");
-        return;
-    }
 
     if (!documentId || !sectionId) {
         document.getElementById("question-title").innerText = "Error: No section selected!";
@@ -114,7 +92,7 @@ function loadQuestions() {
     displayQuestion();
 }
 
-// ✅ Function to display the current question
+// ✅ Display the current question
 function displayQuestion() {
     let questionData = questions[currentQuestionIndex];
 
@@ -123,76 +101,57 @@ function displayQuestion() {
         `<label><input type="checkbox" value="${index}"> ${option}</label><br>`
     ).join("");
 
-    document.getElementById("feedback-message").innerText = "";
-
-    // 🔹 Restore Submit Answer Button with ✅
     let submitBtn = document.getElementById("submit-btn");
-    submitBtn.innerText = "✅ Submit Answer"; // Add green checkmark
-    submitBtn.disabled = true; // Start disabled until an answer is selected
+    submitBtn.innerText = "✅ Submit Answer";
+    submitBtn.disabled = true;
     submitBtn.onclick = validateAnswer;
 
-    // 🔹 Ensure the Previous Question button is enabled correctly
     document.getElementById("prev-btn").disabled = currentQuestionIndex === 0;
 
-    // 🔹 Remove Next Question button if it was added before
     let nextBtn = document.getElementById("next-btn");
-    if (nextBtn) {
-        nextBtn.remove();
-    }
+    if (nextBtn) nextBtn.remove();
 
-    // 🔹 Enable submit button once an answer is selected
     document.querySelectorAll("#answer-options input").forEach(input => {
-        input.addEventListener("change", () => {
-            submitBtn.disabled = false;
-        });
+        input.addEventListener("change", () => submitBtn.disabled = false);
     });
 }
 
-// ✅ Function to validate the answer
+// ✅ Validate the answer
 function validateAnswer() {
     const selectedAnswers = [...document.querySelectorAll("#answer-options input:checked")].map(input => parseInt(input.value));
     const correctAnswers = questions[currentQuestionIndex].correctAnswers;
 
     let isCorrect = selectedAnswers.length === correctAnswers.length && selectedAnswers.every(answer => correctAnswers.includes(answer));
 
-    // 🔹 Remove "Correct" or "Incorrect" message
-    document.getElementById("feedback-message").innerText = ""; 
-
-    // 🔹 Highlight correct and incorrect answers
     document.querySelectorAll("#answer-options input").forEach(input => {
+        input.parentElement.classList.remove("correct", "incorrect");
         if (correctAnswers.includes(parseInt(input.value))) {
-            input.parentElement.style.color = "green"; // Correct answers in green
+            input.parentElement.classList.add("correct");
         } else if (selectedAnswers.includes(parseInt(input.value))) {
-            input.parentElement.style.color = "red"; // Incorrect answers in red
+            input.parentElement.classList.add("incorrect");
         }
     });
 
-    // 🔹 Disable Submit Button After Clicking Once
     let submitBtn = document.getElementById("submit-btn");
     submitBtn.disabled = true;
-
-    // 🔹 Change Submit Button to "⏭️ Next Question"
     submitBtn.innerText = "⏭️ Next Question";
     submitBtn.onclick = nextQuestion;
 
-    // 🔹 Remove the existing Next Question button if it exists
     let nextBtn = document.getElementById("next-btn");
-    if (nextBtn) {
-        nextBtn.remove();
-    }
+    if (nextBtn) nextBtn.remove();
 }
 
-// ✅ Function to navigate to the next question
+// ✅ Navigate to the next question
 function nextQuestion() {
     if (currentQuestionIndex < questions.length - 1) {
         currentQuestionIndex++;
         displayQuestion();
     } else {
-        showScoreSummary(); // ✅ Show score summary when all questions are done
+        showScoreSummary();
     }
 }
 
-// ✅ Function to navigate to the previous question
+// ✅ Navigate to the previous question
 function prevQuestion() {
     if (currentQuestionIndex > 0) {
         currentQuestionIndex--;
@@ -200,7 +159,7 @@ function prevQuestion() {
     }
 }
 
-// ✅ Function to shuffle an array (Randomize questions)
+// ✅ Shuffle an array (Randomize questions)
 function shuffleArray(array) {
     return array.sort(() => Math.random() - 0.5);
 }
@@ -213,21 +172,21 @@ window.onload = function() {
         loadQuestions();
     }
 };
+
+// ✅ Show score summary
 function showScoreSummary() {
     document.getElementById("question-title").innerText = "Section Completed!";
     document.getElementById("question-text").innerText = `Your Score: ${score} / ${questions.length}`;
 
-    document.getElementById("answer-options").innerHTML = ""; // Remove answer choices
-    document.getElementById("feedback-message").innerText = ""; // Clear feedback
+    document.getElementById("answer-options").innerHTML = "";
+    document.getElementById("feedback-message").innerText = "";
 
-    document.getElementById("submit-btn").style.display = "none"; // Hide Submit button
-    document.getElementById("prev-btn").style.display = "none"; // Hide Previous button
-    document.getElementById("next-btn").style.display = "none"; // Hide Next button
+    document.getElementById("submit-btn").style.display = "none";
+    document.getElementById("prev-btn").style.display = "none";
+    document.getElementById("next-btn").style.display = "none";
 
-    // ✅ Final Fix: Remove any existing "Back to Sections" button before creating a new one
     document.querySelectorAll(".back-to-sections-btn").forEach(btn => btn.remove());
 
-    // ✅ Create "Back to Sections" button
     const backToSectionsBtn = document.createElement("button");
     backToSectionsBtn.innerText = "🔙 Back to Sections";
     backToSectionsBtn.id = "back-to-sections-btn"; 

@@ -132,3 +132,13 @@ button:hover {
 #prev-btn {
     margin-top: 1px; /* Reduce space above */
 }
+
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: red;
+    font-weight: bold;
+}
