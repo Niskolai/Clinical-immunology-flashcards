@@ -62,7 +62,7 @@ button:hover {
 /* 🟢 Adjust position for mobile */
 @media (max-width: 768px) {
     .container {
-        padding-top: 100px; /* Move higher on mobile */
+        padding-top: 25px; /* Move higher on mobile */
     }
 }
 
