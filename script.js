@@ -55,27 +55,185 @@ function goBackToSections() {
 
 // ✅ Sample Questions Data (Replace with actual questions)
 const questionData = {
-    "1": {
-        "1": [
-            { 
-                question: "Which are types of T cells?", 
-                options: ["CD4+ Helper T cells", "CD8+ Cytotoxic T cells", "B cells", "Regulatory T cells"], 
-                correctAnswers: [0, 1, 3] 
+    "1": {  // Document 1
+        "1": [  // Section 1
+            {
+                question: "Which of the following would not be considered to be a secondary lymphoid organ?",
+                options: ["Lymph nodes", "Spleen", "Thymus", "Tonsils"],
+                correctAnswers: [2]
             },
-            { 
-                question: "What is the function of antibodies?", 
-                options: ["Neutralization", "Phagocytosis", "Complement activation", "Apoptosis"], 
-                correctAnswers: [0, 2] 
+            {
+                question: "Antigen presenting cells (APCs) include macrophages and dendritic cells, which are found in lymphoid tissues and the __________.",
+                options: ["Heart", "Kidney", "Skin"],
+                correctAnswers: [2]
+            },
+            {
+                question: "Which types of immunoglobulins do not exist?",
+                options: ["IgA", "IgB", "IgC", "IgD"],
+                correctAnswers: [1, 2]
+            },
+            {
+                question: "Decreased serum levels of the C3 and C4 fractions of the complement pathway may be due to:",
+                options: [
+                    "Activation of the classical complement pathway", 
+                    "Activation of the alternative complement pathway", 
+                    "Activation of the mannose complement pathway", 
+                    "Decreased synthesis"
+                ],
+                correctAnswers: [0, 2, 3]
+            },
+            {
+                question: "Which statements are CORRECT?",
+                options: [
+                    "IL-2 is synthesized by T lymphocytes", 
+                    "IL-2 is synthesized by B lymphocytes", 
+                    "IL-2 stimulates T and B cell proliferation and differentiation, and NK cell activity", 
+                    "IL-2 has antiviral activity"
+                ],
+                correctAnswers: [0]
+            },
+            {
+                question: "The expression of HLA molecules is induced by:",
+                options: ["IL-5", "IL-2", "IFN-γ"],
+                correctAnswers: [2]
+            },
+            {
+                question: "T lymphocytes undergo the process of negative selection in which of the following lymphoid organs?",
+                options: ["Bone marrow", "Thymus", "Lymph nodes", "Spleen"],
+                correctAnswers: [1]
+            },
+            {
+                question: "Which of the following types of antigen presenting cells (APCs) is specialized for degradation and presentation of particular antigens to T cells?",
+                options: ["Mast cells", "Dendritic cells", "NK cells", "Neutrophils"],
+                correctAnswers: [1]
+            },
+            {
+                question: "Match the immunoglobulin with the functional description: Can transfer across the placental (maternal protection).",
+                options: ["IgE", "IgM", "IgG & IgM", "IgG & IgA", "IgG"],
+                correctAnswers: [4]
+            },
+            {
+                question: "In the case of a complete genetic deficiency of C2:",
+                options: [
+                    "The haemolytic activity of total complement is reduced",
+                    "The fixation of C1q to the antigen-antibody complexes is significantly impaired",
+                    "The classical C3-convertase is normal",
+                    "The main clinical manifestation is angioneurotic oedema",
+                    "There may be a lupus syndrome"
+                ],
+                correctAnswers: [0, 4]
+            },
+            {
+                question: "Which statements are CORRECT?",
+                options: [
+                    "TNF-a is synthesized by macrophages",
+                    "TNF-a stimulates the myelopoiesis",
+                    "TNF-a induces cytotoxicity, tumour necrosis, vascular thrombosis"
+                ],
+                correctAnswers: [0, 2]
+            },
+            {
+                question: "The T cell antigen recognition receptor makes contact with:",
+                options: [
+                    "The peptide bound by the HLA molecule",
+                    "Areas from the antigen-binding pocket of the HLA molecule",
+                    "b2 microglobulin"
+                ],
+                correctAnswers: [0]
+            },
+            {
+                question: "Major innate mechanism that mediates destruction by lysis of foreign substances in the body:",
+                options: [
+                    "Regulatory T cells",
+                    "Helper T cells",
+                    "Complement",
+                    "Interferon",
+                    "Macrophage and other APCs"
+                ],
+                correctAnswers: [2, 4]
+            },
+            {
+                question: "Which cell is able to provide two signals for activation of T cells?",
+                options: [
+                    "Regulatory T cells",
+                    "Helper T cells",
+                    "Complement",
+                    "Interferon",
+                    "Dendritic cells"
+                ],
+                correctAnswers: [4]
+            },
+            {
+                question: "The Heidelberger curve represents:",
+                options: [
+                    "The amount of antibodies",
+                    "The quality of antigens",
+                    "Basic patterns of binding of antigens and antibodies"
+                ],
+                correctAnswers: [2]
+            },
+            {
+                question: "The diagnostic criteria for primary antiphospholipid syndrome include:",
+                options: [
+                    "Vascular thrombosis, complicated pregnancy, presence of LA (lupus anticoagulant), moderate or high titre of aCL and ab2GPI in plasma",
+                    "One or more miscarriages of a morphologically normal embryo before g.w. 10",
+                    "Three or more unexplained consecutive spontaneous abortions before g.w. 10",
+                    "Unexplained transient loss of vision – unilateral or bilateral",
+                    "Presence of moderate or high titre of aCL from IgG or IgM type",
+                    "Presence of moderate or high titre of ab2GPI from IgG or IgM type"
+                ],
+                correctAnswers: [0, 2, 4, 5]
+            },
+            {
+                question: "The HLA compatibility between donor and recipient is determined prospectively and is selection criteria in:",
+                options: [
+                    "Transplantation or haematopoietic stem cells (HSCs)",
+                    "Liver transplantation",
+                    "Heart transplantation",
+                    "Kidney transplantation"
+                ],
+                correctAnswers: [0, 1, 2, 3]
+            },
+            {
+                question: "Which of the following signs indicate hereditary deficiency of antibodies?",
+                options: [
+                    "Without infections until 7-9 months",
+                    "Severe bacterial infections (e.g. Streptococcus pneumoniae)",
+                    "Recurrent infections with opportunistic microorganisms (e.g. Pneumocystis jiroveci)",
+                    "Poor wound healing"
+                ],
+                correctAnswers: [1, 2]
+            },
+            {
+                question: "T-B+NK+ phenotype in combined immunodeficiency is observed when there is/are:",
+                options: [
+                    "Defect in IL-7R (IL-7 receptor)",
+                    "Defects in RAG1 and RAG2 genes",
+                    "Defects in ZAP70",
+                    "Omenn syndrome"
+                ],
+                correctAnswers: [0]
+            },
+            {
+                question: "Which statement(s) about primary immunodeficiencies is/are true?",
+                options: [
+                    "Mutations that cause them arise \"de novo\" at fertilisation",
+                    "They are inherited predominantly through the X-chromosome",
+                    "They have autosomal dominant, autosomal recessive inheritance or through X-chromosome",
+                    "These are polygenic diseases influenced by environmental factors"
+                ],
+                correctAnswers: [2]
             }
-        ],
-        "2": [
-            { 
-                question: "What is the main role of the thymus?", 
-                options: ["Mature T cells", "Store red blood cells", "Produce antibodies", "Digest pathogens"], 
-                correctAnswers: [0] 
+        ], // Close Section "1"
+        
+        "2": [ // Open Section "2"
+            {
+                question: "First question in Section 2?",
+                options: ["Answer 1", "Answer 2", "Answer 3"],
+                correctAnswers: [1]
             }
-        ]
-    }
+        ] // Close Section "2"
+    } // Close Document "1"
 };
 
 // ✅ Function to load and display questions
@@ -148,7 +306,7 @@ function displayQuestion() {
     });
 }
 
-// ✅ Function to validate the answer
+// ✅ Function to validate the answer and update the score
 function validateAnswer() {
     const selectedAnswers = [...document.querySelectorAll("#answer-options input:checked")].map(input => parseInt(input.value));
     const correctAnswers = questions[currentQuestionIndex].correctAnswers;
@@ -164,6 +322,11 @@ function validateAnswer() {
             input.parentElement.classList.add("incorrect");
         }
     });
+
+    // ✅ Update the Score if the Answer is Correct
+    if (isCorrect) {
+        score++; // ✅ This line was missing!
+    }
 
     // ✅ Disable Submit Button and Enable "Next Question"
     let submitBtn = document.getElementById("submit-btn");
