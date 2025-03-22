@@ -1,28 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questions</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Questions</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <h2 id="question-number">Question 1 / X</h2>
+  <div class="container">
 
-        <div id="question-text"></div>
-        <div id="answer-options"></div>
+    <!-- ✅ This will be updated via JavaScript only when needed -->
+    <h1 id="question-title" style="display: none;"></h1>
 
-        <!-- ✅ Button Section (Now Stacked Properly) -->
-        <div id="question-buttons">
-            <button id="submit-btn" onclick="validateAnswer()">✅ Submit Answer</button>
-            <button id="next-btn" onclick="nextQuestion()" disabled>⏭️ Next Question</button>
-            <button id="prev-btn" onclick="prevQuestion()">⏮️ Previous Question</button>
-        </div>
+    <!-- ✅ Displays current question number -->
+    <h2 id="question-number">Question 1 / X</h2>
 
-        <p id="feedback-message"></p>
+    <!-- ✅ Question and Answers Container -->
+    <div id="question-text"></div>
+    <div id="answer-options"></div>
+
+    <!-- ✅ Navigation Buttons -->
+    <div id="question-buttons">
+      <button id="submit-btn" onclick="validateAnswer()">✅ Submit Answer</button>
+      <button id="next-btn" onclick="nextQuestion()" disabled>⏭️ Next Question</button>
+      <button id="prev-btn" onclick="prevQuestion()">⏮️ Previous Question</button>
     </div>
 
-    <script src="script.js"></script>
+    <!-- ✅ Feedback Message -->
+    <p id="feedback-message"></p>
+
+  </div>
+
+  <!-- ✅ JavaScript logic -->
+  <script src="script.js"></script>
 </body>
 </html>
