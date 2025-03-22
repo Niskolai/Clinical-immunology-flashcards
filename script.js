@@ -535,17 +535,6 @@ const questionData = {
                 correctAnswers: [3]
             },
             {
-                question: "Helper T cells do not induce:",
-                options: [
-                    "Proliferation of B cells",
-                    "Differentiation of B cells into plasma cells",
-                    "Expansion of the pool of memory B cells",
-                    "V, J joining in light chains",
-                    "Immunoglobulin class switch"
-                ],
-                correctAnswers: [3]
-            },
-            {
                 question: "Which of the following apply uniquely to secondary lymphoid organs?",
                 options: [
                     "Antigen-dependent response",
@@ -1351,6 +1340,7 @@ function loadQuestions() {
     }
 
     currentQuestionIndex = 0;
+    score = 0; // ✅ Reset score at the start of a section
     questions = shuffleArray(questions);
     displayQuestion();
 }
@@ -1453,15 +1443,30 @@ function shuffleArray(array) {
 
 // ✅ Function to show score summary at the end
 function showScoreSummary() {
-    document.getElementById("question-title").innerText = "Section Completed!";
-    document.getElementById("question-text").innerText = `Your Score: ${score} / ${questions.length}`;
+    const titleEl = document.getElementById("question-title");
+    const textEl = document.getElementById("question-text");
+    const optionsEl = document.getElementById("answer-options");
+    const feedbackEl = document.getElementById("feedback-message");
+    const submitBtn = document.getElementById("submit-btn");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const container = document.querySelector(".container");
 
-    document.getElementById("answer-options").innerHTML = ""; // Clear answers
-    document.getElementById("feedback-message").innerText = ""; // Clear feedback
+    // ❌ If any of these are missing, don't continue
+    if (!titleEl || !textEl || !optionsEl || !feedbackEl || !submitBtn || !prevBtn || !nextBtn || !container) {
+        console.error("🚨 One or more DOM elements are missing. Cannot show score summary.");
+        return;
+    }
 
-    document.getElementById("submit-btn").style.display = "none"; // Hide Submit button
-    document.getElementById("prev-btn").style.display = "none"; // Hide Previous button
-    document.getElementById("next-btn").style.display = "none"; // Hide Next button
+    titleEl.innerText = "Section Completed!";
+    textEl.innerText = `Your Score: ${score} / ${questions.length}`;
+
+    optionsEl.innerHTML = "";     // Clear answers
+    feedbackEl.innerText = "";    // Clear feedback
+
+    submitBtn.style.display = "none"; // Hide Submit button
+    prevBtn.style.display = "none";   // Hide Previous button
+    nextBtn.style.display = "none";   // Hide Next button
 
     // ✅ Create "Back to Sections" button
     const backToSectionsBtn = document.createElement("button");
@@ -1469,7 +1474,7 @@ function showScoreSummary() {
     backToSectionsBtn.id = "back-to-sections-btn";
     backToSectionsBtn.onclick = goBackToSections;
 
-    document.querySelector(".container").appendChild(backToSectionsBtn);
+    container.appendChild(backToSectionsBtn);
 }
 
 // ✅ Load functions based on the page
