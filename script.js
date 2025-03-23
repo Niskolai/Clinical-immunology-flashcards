@@ -196,7 +196,7 @@ const questionData = {
                     "Heart transplantation",
                     "Kidney transplantation"
                 ],
-                correctAnswers: [0, 1, 2, 3]
+                correctAnswers: [0, 2, 3]
             },
             {
                 question: "Which of the following signs indicate hereditary deficiency of antibodies?",
@@ -226,7 +226,7 @@ const questionData = {
                     "They have autosomal dominant, autosomal recessive inheritance or through X-chromosome",
                     "These are polygenic diseases influenced by environmental factors"
                 ],
-                correctAnswers: [2]
+                correctAnswers: [0, 2]
             }
         ], // Close Section "1"
         
@@ -239,7 +239,7 @@ const questionData = {
                     "Secondary immunodeficiencies are observed in the treatment of neoplasms",
                     "Secondary immunodeficiencies are observed after organ and tissue transplantations"
                 ],
-                correctAnswers: [0, 2]
+                correctAnswers: [0, 2, 3]
             },
             {
                 question: "Which is false?",
@@ -295,9 +295,10 @@ const questionData = {
                 options: [
                     "Bone marrow transplant – preferably from HLA compatible sibling",
                     "Gene therapy",
+                    "antibiotics",
                     "Prophylaxis – no live vaccines (BCG)"
                 ],
-                correctAnswers: [0, 1, 2]
+                correctAnswers: [0, 1, 2, 3]
             },
             {
                 question: "B lymphocytes develop immunocompetence in the __________.",
@@ -404,7 +405,7 @@ const questionData = {
                     "They affect children more often",
                     "They affect equally children and adults"
                 ],
-                correctAnswers: [1, 2]
+                correctAnswers: [0, 2]
             },
             {
                 question: "Major consequences of the secondary immunodeficiencies is/are:",
@@ -452,7 +453,7 @@ const questionData = {
                 correctAnswers: [2]
             },
             {
-                question: "InTransplant patients with prolonged immunosuppression require monitoring of: (which is not true?)",
+                question: "In Transplant patients with prolonged immunosuppression require monitoring of: (which is not true?)",
                 options: [
                     "T- and B-cell function",
                     "Alloantibodies",
@@ -680,7 +681,7 @@ const questionData = {
             "Complement-dependent cytotoxicity",
             "The release of IFN-g"
         ],
-        correctAnswers: [0, 1, 2, 3]
+        correctAnswers: [0, 2, 3]
     },
     {
         question: "Tumour progression is favoured by:",
@@ -763,7 +764,7 @@ const questionData = {
             "Does not lead to the activation of CD8+ T cells",
             "All of the above"
         ],
-        correctAnswers: [4]
+        correctAnswers: [1]
     },
     {
         question: "The most common clinical consequence(s) of C3 deficiency is/are:",
@@ -814,7 +815,7 @@ const questionData = {
             "Exposure to antigen of B cells carrying only sIgM as a receptor",
             "Involution of the thymus in old age"
         ],
-        correctAnswers: [0, 2]
+        correctAnswers: [0, 1, 2]
     },
     {
         question: "The following is/are possible mechanism for the development of autoimmune diseases:",
@@ -986,7 +987,7 @@ const questionData = {
         "The donor is conditioned properly",
         "The graft is of immunocompromised cells"
     ],
-    correctAnswers: [1, 4]
+    correctAnswers: [0, 1]
 },
 {
     question: "Which of the following are primary lymphoid organs?",
@@ -1025,7 +1026,7 @@ const questionData = {
         "IL-4 stimulates T and B cell differentiation, IgE and IgER induction",
         "IL-4 stimulates growth and differentiation of granulocytes"
     ],
-    correctAnswers: [0, 2]
+    correctAnswers: [0]
 },
 {
     question: "The very first line of defence includes:",
@@ -1057,7 +1058,7 @@ const questionData = {
       "Defect in phagocytic function",
       "Defect in the complement function"
     ],
-    correctAnswers: [0, 2, 3]
+    correctAnswers: [0, 1, 2, 3]
   },
   {
     question: "Which statement about the deficiencies of phagocytic cells is NOT TRUE?",
@@ -1107,7 +1108,7 @@ const questionData = {
       "Complement-dependent cytotoxicity",
       "Release of IFN-g"
     ],
-    correctAnswers: [0, 1, 2, 3]
+    correctAnswers: [0, 2, 3]
   },
   {
     question: "Immunosuppressive therapy in transplant patients significantly increases the risk of:",
@@ -1117,7 +1118,7 @@ const questionData = {
       "Skin cancer",
       "Haemolytic anaemia"
     ],
-    correctAnswers: [0, 1]
+    correctAnswers: [0, 1, 2]
   },
   {
     question: "Which statements are CORRECT?",
@@ -1190,7 +1191,7 @@ const questionData = {
       "IgA",
       "IgA and IgG"
     ],
-    correctAnswers: [1, 3, 4]
+    correctAnswers: [0, 1, 3]
   },
   {
     question: "Each of the following statements concerning HLA class II molecules is correct EXCEPT:",
